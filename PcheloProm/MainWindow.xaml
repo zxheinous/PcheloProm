@@ -3,10 +3,76 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PcheloProm"
+        xmlns:viewmodels="clr-namespace:PcheloProm.ViewModels"
+        xmlns:views="clr-namespace:PcheloProm.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Информационная система «ПчелоПром»" Height="650" Width="1050" WindowStartupLocation="CenterScreen">
 
+    <Window.Resources>
+
+        <DataTemplate DataType="{x:Type viewmodels:ApiariesViewModel}">
+            <views:ApiariesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:BeeFamiliesViewModel}">
+            <views:BeeFamiliesView/>
+        </DataTemplate>
+
+        <Style x:Key="NavigationButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#34495E"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="15,10"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="4" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#16A085"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Background="#2C3E50">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Margin="0,30,0,30">
+                <TextBlock Text="🐝 ПЧЕЛОПРОМ" Foreground="#F1C40F" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBlock Text="Управление полным циклом" Foreground="#BDC3C7" FontSize="11" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Margin="10,0">
+                <Button Content="Управление пасеками" Command="{Binding OpenApiariesCommand}" Style="{StaticResource NavigationButtonStyle}"/>
+                <Button Content="Пчелиные семьи" Command="{Binding OpenBeeFamiliesCommand}" Style="{StaticResource NavigationButtonStyle}" Margin="0,10,0,0"/>
+
+                <Button Content="Складской учет" IsEnabled="False" Style="{StaticResource NavigationButtonStyle}" Margin="0,10,0,0"/>
+                <Button Content="Модуль продаж" IsEnabled="False" Style="{StaticResource NavigationButtonStyle}" Margin="0,10,0,0"/>
+            </StackPanel>
+
+            <TextBlock Grid.Row="3" Text="Версия 1.0.0 (Net 8.0)" Foreground="#7F8C8D" HorizontalAlignment="Center" Margin="10"/>
+        </Grid>
+
+        <ContentControl Grid.Column="1" Content="{Binding CurrentView}"/>
     </Grid>
 </Window>

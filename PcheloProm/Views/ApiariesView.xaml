@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="PcheloProm.Views.ApiariesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="#F5F6FA">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Пасечные угодья хозяйства «ПчелоПром»" FontSize="22" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,20"/>
+
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Apiaries}" SelectedItem="{Binding SelectedApiary}" 
+                  AutoGenerateColumns="False" CanUserAddRows="False" GridLinesVisibility="Horizontal" 
+                  Background="White" RowHeight="30" FontSize="14" BorderThickness="1" BorderBrush="#DCDDE1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ApiaryId}" Width="60" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Название пасеки" Binding="{Binding ApiaryName}" Width="2*"/>
+                <DataGridTextColumn Header="Местоположение" Binding="{Binding Location}" Width="2*"/>
+                <DataGridTextColumn Header="Макс. ульев" Binding="{Binding TotalCapacity}" Width="120"/>
+                <DataGridTextColumn Header="Текущих семей" Binding="{Binding CurrentBeehives}" Width="120"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="140"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Border Grid.Row="2" Background="White" CornerRadius="5" Margin="0,20,0,0" Padding="15" BorderThickness="1" BorderBrush="#DCDDE1">
+            <StackPanel>
+                <TextBlock Text="Добавить новую пасеку" FontWeight="Bold" FontSize="14" Foreground="#2C3E50" Margin="0,0,0,10"/>
+                <UniformGrid Columns="4">
+                    <StackPanel Margin="5,0">
+                        <TextBlock Text="Название:" Margin="0,0,0,5" Foreground="#7F8C8D"/>
+                        <TextBox Text="{Binding NewApiaryName, UpdateSourceTrigger=PropertyChanged}" Height="25"/>
+                    </StackPanel>
+                    <StackPanel Margin="5,0">
+                        <TextBlock Text="Локация / Координаты:" Margin="0,0,0,5" Foreground="#7F8C8D"/>
+                        <TextBox Text="{Binding NewLocation, UpdateSourceTrigger=PropertyChanged}" Height="25"/>
+                    </StackPanel>
+                    <StackPanel Margin="5,0">
+                        <TextBlock Text="Вместимость:" Margin="0,0,0,5" Foreground="#7F8C8D"/>
+                        <TextBox Text="{Binding NewCapacity, UpdateSourceTrigger=PropertyChanged}" Height="25"/>
+                    </StackPanel>
+                    <StackPanel Margin="5,0" VerticalAlignment="Bottom" Orientation="Horizontal">
+                        <Button Content="Сохранить" Command="{Binding AddCommand}" Width="85" Height="25" Background="#2ECC71" Foreground="White" FontWeight="Bold" BorderThickness="0"/>
+                        <Button Content="Удалить" Command="{Binding DeleteCommand}" Width="85" Height="25" Background="#E74C3C" Foreground="White" FontWeight="Bold" BorderThickness="0" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </UniformGrid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
