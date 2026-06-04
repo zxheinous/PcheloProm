@@ -9,12 +9,17 @@
         Title="Информационная система «ПчелоПром»" Height="650" Width="1050" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
-
         <DataTemplate DataType="{x:Type viewmodels:ApiariesViewModel}">
             <views:ApiariesView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:BeeFamiliesViewModel}">
             <views:BeeFamiliesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:WarehousesViewModel}">
+            <views:Views.WarehousesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:OrdersViewModel}">
+            <views:OrdersView/>
         </DataTemplate>
 
         <Style x:Key="NavigationButtonStyle" TargetType="Button">
@@ -25,7 +30,6 @@
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
-
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -35,7 +39,6 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#16A085"/>
@@ -65,9 +68,8 @@
             <StackPanel Grid.Row="1" Margin="10,0">
                 <Button Content="Управление пасеками" Command="{Binding OpenApiariesCommand}" Style="{StaticResource NavigationButtonStyle}"/>
                 <Button Content="Пчелиные семьи" Command="{Binding OpenBeeFamiliesCommand}" Style="{StaticResource NavigationButtonStyle}" Margin="0,10,0,0"/>
-
-                <Button Content="Складской учет" IsEnabled="False" Style="{StaticResource NavigationButtonStyle}" Margin="0,10,0,0"/>
-                <Button Content="Модуль продаж" IsEnabled="False" Style="{StaticResource NavigationButtonStyle}" Margin="0,10,0,0"/>
+                <Button Content="Складской учет" Command="{Binding OpenWarehousesCommand}" Style="{StaticResource NavigationButtonStyle}" Margin="0,10,0,0"/>
+                <Button Content="Модуль продаж" Command="{Binding OpenOrdersCommand}" Style="{StaticResource NavigationButtonStyle}" Margin="0,10,0,0"/>
             </StackPanel>
 
             <TextBlock Grid.Row="3" Text="Версия 1.0.0 (Net 8.0)" Foreground="#7F8C8D" HorizontalAlignment="Center" Margin="10"/>

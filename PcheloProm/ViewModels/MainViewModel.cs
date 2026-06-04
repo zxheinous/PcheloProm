@@ -15,6 +15,8 @@ public class MainViewModel : ViewModelBase
 
     public ICommand OpenApiariesCommand { get; }
     public ICommand OpenBeeFamiliesCommand { get; }
+    public ICommand OpenWarehousesCommand { get; } // Новая команда
+    public ICommand OpenOrdersCommand { get; }     // Новая команда
 
     public MainViewModel()
     {
@@ -23,5 +25,7 @@ public class MainViewModel : ViewModelBase
 
         OpenApiariesCommand = new RelayCommand(_ => CurrentView = new ApiariesViewModel());
         OpenBeeFamiliesCommand = new RelayCommand(_ => CurrentView = new BeeFamiliesViewModel());
+        OpenWarehousesCommand = new RelayCommand(_ => CurrentView = new WarehousesViewModel());
+        OpenOrdersCommand = new RelayCommand(_ => CurrentView = new OrdersViewModel());
     }
 }
