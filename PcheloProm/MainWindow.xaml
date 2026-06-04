@@ -12,12 +12,15 @@
         <DataTemplate DataType="{x:Type viewmodels:ApiariesViewModel}">
             <views:ApiariesView/>
         </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewmodels:BeeFamiliesViewModel}">
             <views:BeeFamiliesView/>
         </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewmodels:WarehousesViewModel}">
-            <views:Views.WarehousesView/>
+            <views:WarehousesView/>
         </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewmodels:OrdersViewModel}">
             <views:OrdersView/>
         </DataTemplate>
@@ -72,7 +75,7 @@
                 <Button Content="Модуль продаж" Command="{Binding OpenOrdersCommand}" Style="{StaticResource NavigationButtonStyle}" Margin="0,10,0,0"/>
             </StackPanel>
 
-            <TextBlock Grid.Row="3" Text="Версия 1.0.0 (Net 8.0)" Foreground="#7F8C8D" HorizontalAlignment="Center" Margin="10"/>
+            <TextBlock Grid.Row="3" Text="(Net 8.0)" Foreground="#7F8C8D" HorizontalAlignment="Center" Margin="10"/>
         </Grid>
 
         <ContentControl Grid.Column="1" Content="{Binding CurrentView}"/>
