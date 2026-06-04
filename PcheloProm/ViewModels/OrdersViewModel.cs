@@ -24,7 +24,6 @@ public class OrdersViewModel : ViewModelBase
 
     private void LoadData()
     {
-        // Загружаем заказы вместе с данными клиентов
         var data = _context.Orders
             .Include(o => o.Customer)
             .ToList();

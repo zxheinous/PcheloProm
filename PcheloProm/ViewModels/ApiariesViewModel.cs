@@ -55,7 +55,6 @@ public class ApiariesViewModel : ViewModelBase
     private void LoadData()
     {
         Apiaries.Clear();
-        // Загружаем пасеки вместе с ответственными пользователями
         var data = _context.Apiaries.Include(a => a.Responsible).ToList();
         foreach (var apiary in data)
         {

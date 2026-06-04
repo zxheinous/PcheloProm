@@ -24,7 +24,6 @@ public class WarehousesViewModel : ViewModelBase
 
     private void LoadData()
     {
-        // Загружаем запасы, включая связанные данные о продукте и складе
         var data = _context.Inventories
             .Include(i => i.Product)
             .Include(i => i.Warehouse)

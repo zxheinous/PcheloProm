@@ -15,12 +15,11 @@ public class MainViewModel : ViewModelBase
 
     public ICommand OpenApiariesCommand { get; }
     public ICommand OpenBeeFamiliesCommand { get; }
-    public ICommand OpenWarehousesCommand { get; } // Новая команда
-    public ICommand OpenOrdersCommand { get; }     // Новая команда
+    public ICommand OpenWarehousesCommand { get; }
+    public ICommand OpenOrdersCommand { get; }
 
     public MainViewModel()
     {
-        // При старте открываем экран пасек
         _currentView = new ApiariesViewModel();
 
         OpenApiariesCommand = new RelayCommand(_ => CurrentView = new ApiariesViewModel());
